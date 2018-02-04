@@ -18,6 +18,7 @@ class IssuesAPI {
     const url = `https://api.github.com/users/${username}`;
     return rp.get(url, {
       json: true,
+      simple: true,
       headers: {
         'User-Agent': 'Issues Grabber Test',
         Authorization: this.auth,

@@ -88,7 +88,8 @@ class RequestMock {
 
 class ResponseMock {
   constructor() {
-    this.json = sinon.stub();
+    this.json = () => {};
+    // this.json = sinon.stub();
     this.jsonp = sinon.stub();
     this.send = sinon.stub();
     this.status = sinon.stub().returns(this);

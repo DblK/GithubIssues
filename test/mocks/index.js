@@ -1,4 +1,16 @@
 const { AppMock, RequestMock, ResponseMock } = require('./express.mock');
+const {
+  MOCKED_GOODUSER_INFOS,
+  MOCKED_BADUSER_INFOS,
+  MOCKED_BADUSER_UNAUTHORIZED,
+  MOCKED_GOODUSER_REPOS,
+  MOCKED_GOODUSER_REPOS_EMPTY,
+  MOCKED_GOODUSER_ISSUES,
+  MOCKED_GOODUSER_ISSUES_EMPTY,
+  REQUEST,
+  ISSUES_LIST,
+  ISSUES_LIST_ERRORS,
+} = require('./github.mock');
 
 module.exports = {
   express: {
@@ -6,4 +18,16 @@ module.exports = {
     RequestMock,
     ResponseMock,
   },
+  github: {
+    MOCKED_GOODUSER_INFOS,
+    MOCKED_BADUSER_INFOS,
+    MOCKED_BADUSER_UNAUTHORIZED,
+    MOCKED_GOODUSER_REPOS,
+    MOCKED_GOODUSER_REPOS_EMPTY,
+    MOCKED_GOODUSER_ISSUES,
+    MOCKED_GOODUSER_ISSUES_EMPTY,
+    REQUEST,
+    ISSUES_LIST,
+    ISSUES_LIST_ERRORS,
+  }
 };
