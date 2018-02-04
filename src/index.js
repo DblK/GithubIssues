@@ -2,9 +2,9 @@ const http = require('http');
 const winston = require('winston');
 const express = require('express');
 const config = require('config');
-const IssuesAPI = require('./issues/issues.API');
-const IssuesService = require('./issues/issues.Service');
-const IssuesController = require('./issues/issues.Controller');
+const IssuesAPI = require('./issues/Issues.API');
+const IssuesService = require('./issues/Issues.Service');
+const IssuesController = require('./issues/Issues.Controller');
 
 const logger = new (winston.Logger)({
   level: config.get('logs.level'),
