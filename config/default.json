@@ -1,0 +1,10 @@
+{
+    "servicePort": 8015,
+    "logs": {
+      "level": "debug"
+    },
+    "github": {
+      "user" : "MyGithubAccount",
+      "password" : "MyPassword"
+    }
+}

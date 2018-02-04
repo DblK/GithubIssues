@@ -1,0 +1,40 @@
+{
+  "name": "githubissuestracking",
+  "version": "1.0.0",
+  "description": "Give a list of issue per username",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:lint": "eslint src",
+    "test:unit": "",
+    "dev": "./node_modules/.bin/nodemon src/index.js",
+    "docker:build": "docker build -t githubissues:latest .",
+    "docker:run": "docker run -p 8000:8015 githubissues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DblK/GithubIssue.git"
+  },
+  "author": "Remy Boulanouar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DblK/GithubIssue/issues"
+  },
+  "homepage": "https://github.com/DblK/GithubIssue#readme",
+  "dependencies": {
+    "config": "^1.29.4",
+    "express": "^4.16.2",
+    "lodash": "^4.17.5",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nock": "^9.1.6",
+    "nodemon": "^1.14.12"
+  }
+}

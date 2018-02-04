@@ -1,0 +1,17 @@
+test
+.drone.yml
+.drone.yml.sig
+.editorconfig
+.eslintrc
+.eslintrc.js
+.gitignore
+.git
+.nvmrc
+.nycrc
+package-lock.json
+README.md
+docs
+coverage
+.vscode
+.jsdoc
+.nyc_output
