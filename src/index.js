@@ -1,28 +1,26 @@
-'use strict';
-
 const http = require('http');
 const winston = require('winston');
 const express = require('express');
 const config = require('config');
-const issuesAPI = require('./issues/issues.API');
-const issuesService = require('./issues/issues.Service');
-const issuesController = require('./issues/issues.Controller');
+const IssuesAPI = require('./issues/issues.API');
+const IssuesService = require('./issues/issues.Service');
+const IssuesController = require('./issues/issues.Controller');
 
 const logger = new (winston.Logger)({
   level: config.get('logs.level'),
   transports: [
     new (winston.transports.Console)({
-      timestamp: function() {
+      timestamp() {
         return (new Date()).toISOString();
       },
-      formatter: function(options) {
-        return options.timestamp() + ' ' +
-          winston.config.colorize(options.level, options.level.toUpperCase()) + ' ' +
-          (options.message ? options.message : '') +
-          (options.meta && Object.keys(options.meta).length ? '\n\t'+ JSON.stringify(options.meta) : '' );
-      }
-    })
-  ]
+      formatter(options) {
+        return `${options.timestamp()} ${
+          winston.config.colorize(options.level, options.level.toUpperCase())} ${
+          options.message ? options.message : ''
+        }${options.meta && Object.keys(options.meta).length ? `\n\t${JSON.stringify(options.meta)}` : ''}`;
+      },
+    }),
+  ],
 });
 
 let server;
@@ -31,14 +29,14 @@ class Main {
   constructor() {
     this.initLogger();
     this.app = express();
-    this.issuesAPI = new issuesAPI(this);
-    this.issuesService = new issuesService(this);
-    this.issuesController = new issuesController(this);
+    this.issuesAPI = new IssuesAPI(this);
+    this.issuesService = new IssuesService(this);
+    this.issuesController = new IssuesController(this);
     this.app.set('port', config.get('servicePort'));
 
 
     const router = express.Router();
-    // Add Loging for each route
+    // TODO: Add Loging for each route
 
     router.use((req, res, next) => {
       res.setHeader('Content-Type', 'application/json');
@@ -63,17 +61,14 @@ class Main {
     this.logger = logger;
   }
 
-  errorMiddleware(err, req, res, next) {
-    // this.logger.error('Unexpected route error', err);
-    // this.logger.debug(req.url);
-    // res.json(res.formatResponse(err, null));
+  errorMiddleware(err, req, res, next) { // eslint-disable-line
     res.statusCode = 404;
-    return res.json({ code: 404, message: 'Invalid route'});
+    return res.json({ code: 404, message: 'Invalid route' });
   }
 
-  onError(error){
+  onError(error) {
     if (error.syscall !== 'listen') { throw error; }
-    const bind = (typeof port === 'string') ? 'Pipe ' + this.port : 'Port ' + this.port;
+    const bind = (typeof port === 'string') ? `Pipe ${this.port}` : `Port ${this.port}`;
 
     switch (error.code) {
       case 'EACCES':
@@ -89,7 +84,7 @@ class Main {
     }
   }
 
-  onListening() {
+  onListening() { // eslint-disable-line
     const addr = server.address();
     const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
 
@@ -98,4 +93,4 @@ class Main {
 }
 
 
-const main = new Main();
+const main = new Main(); // eslint-disable-line no-unused-vars

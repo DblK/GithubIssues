@@ -16,7 +16,6 @@ class IssuesController {
         issues,
       }))
       .catch((err) => {
-        console.log(err);
         res.statusCode = 404;
         res.json({ code: err.code, message: err.message });
       });

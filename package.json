@@ -5,9 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "test": "npm run test:lint && npm run test:unit",
+    "test": "npm run test:lint && npm run test:unit && npm run test:coverage",
     "test:lint": "eslint src",
-    "test:unit": "",
+    "test:unit": "mocha",
+    "test:coverage": "nyc --check-coverage --reporter=text --reporter=lcov mocha",
     "dev": "./node_modules/.bin/nodemon src/index.js",
     "docker:build": "docker build -t githubissues:latest .",
     "docker:run": "docker run -p 8000:8015 githubissues"
@@ -21,6 +22,12 @@
   "bugs": {
     "url": "https://github.com/DblK/GithubIssue/issues"
   },
+  "nodemonConfig": {
+    "watch": [
+      "src/"
+    ],
+    "ext": "js json"
+  },
   "homepage": "https://github.com/DblK/GithubIssue#readme",
   "dependencies": {
     "config": "^1.29.4",
@@ -31,10 +38,18 @@
     "winston": "^2.4.0"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^3.0.0",
+    "dirty-chai": "^2.0.1",
     "eslint": "^4.17.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
+    "mocha": "^5.0.0",
     "nock": "^9.1.6",
-    "nodemon": "^1.14.12"
+    "nodemon": "^1.14.12",
+    "nyc": "^11.4.1",
+    "sinon": "^4.2.2",
+    "sinon-chai": "^2.14.0"
   }
 }
